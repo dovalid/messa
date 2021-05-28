@@ -8,7 +8,10 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>MESSA</title>
-        <meta name="description" content="TODO" />
+        <meta
+          name="description"
+          content="Orvosi szakterület-választó platform"
+        />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </Head>

@@ -1,23 +1,23 @@
-import { ArrowForwardIcon, HamburgerIcon } from "@chakra-ui/icons"
+import { ArrowForwardIcon } from "@chakra-ui/icons"
 import {
   Box,
   Button,
   Container,
   Divider,
   Heading,
-  HStack,
   Link,
   Stack,
   Image,
   Text,
   useBoolean,
-  VStack,
   useBreakpointValue,
-  Flex,
+  useDisclosure,
 } from "@chakra-ui/react"
 import { useEffect } from "react"
+import EmailModal from "../components/EmailModal"
 
 export default function Home() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [scrolled, setScrolled] = useBoolean()
   const handleScroll = () =>
     window.scrollY > 0 ? setScrolled.on() : setScrolled.off()
@@ -48,18 +48,19 @@ export default function Home() {
           px={{ base: 6, md: 10 }}
           py={{ base: 4, lg: 4 }}
         >
-          <HStack justify="space-between">
+          <Stack direction="row" justify="space-between">
             <Image src="logo.svg" alt="MESSA logo" w="20" />
-            {/* <HamburgerIcon /> */}
             <Button
               colorScheme="primary"
               size="md"
               opacity={scrolled ? "1" : "0"}
+              pointerEvents={scrolled ? "all" : "none"}
               rightIcon={<ArrowForwardIcon />}
+              onClick={onOpen}
             >
               Teszt kitöltése
             </Button>
-          </HStack>
+          </Stack>
         </Container>
       </Box>
       <Box as="main" pt={12}>
@@ -97,6 +98,7 @@ export default function Home() {
               colorScheme="primary"
               size={buttonSize}
               rightIcon={<ArrowForwardIcon />}
+              onClick={onOpen}
             >
               Teszt kitöltése
             </Button>
@@ -178,6 +180,7 @@ export default function Home() {
                   bg: "rgba(255, 255, 255, 0.7)",
                 }}
                 rightIcon={<ArrowForwardIcon />}
+                onClick={onOpen}
               >
                 Teszt kitöltése
               </Button>
@@ -200,7 +203,7 @@ export default function Home() {
                 &copy; {new Date().getFullYear()} Minden jog fenntartva
               </Text>
             </Stack>
-            <Link href="hellomessa@gmail.com">Kapcsolat</Link>
+            <Link href="mailto:hellomessa@gmail.com">Kapcsolat</Link>
           </Stack>
           <Text
             fontSize="sm"
@@ -212,30 +215,7 @@ export default function Home() {
           </Text>
         </Container>
       </Box>
-      {/* <Box as="section">
-          <Container
-            maxWidth="6xl"
-            px={{ base: 6, md: 10 }}
-            py={{ base: 6, lg: 12 }}
-          >
-            <Stack spacing={8} align="center" pb={{ base: 14, lg: 20 }}>
-              <Heading size="2xl" fontWeight="extrabold">
-                Készen állsz?
-              </Heading>
-              <Text fontWeight="bold" textAlign="center">
-                Csak 15 perc. Ne bízz a szerencsére egy életre szóló döntést,
-                bízz inkább bennünk, mi segítünk jól választani.
-              </Text>
-              <Button
-                colorScheme="primary"
-                size={buttonSize}
-                rightIcon={<ArrowForwardIcon />}
-              >
-                Teszt kitöltése
-              </Button>
-            </Stack>
-          </Container>
-        </Box> */}
+      <EmailModal isOpen={isOpen} onClose={onClose} />
     </>
   )
 }
