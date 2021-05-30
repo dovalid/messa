@@ -6,6 +6,7 @@ import lottie from "lottie-web/build/player/lottie_light"
 import animJson from "../public/animation.json"
 import { ReactSVG } from "react-svg"
 import { AnimatePresence, motion } from "framer-motion"
+import { useMediaQuery } from "@chakra-ui/media-query"
 
 const animationStates = [
   {
@@ -15,18 +16,18 @@ const animationStates = [
            megtalálnod, hiszen számos lehetőség közül kell választanod.`,
   },
   {
-    scroll: 200,
+    scroll: 700,
     frame: 70,
     text: `A MESSA honlapján teszt alapú ajánló rendszerrel, szakterületekhez
            tartozó leírásokkal és szakorvosi beszámolókkal segítünk az útbaigazításban.`,
   },
   {
-    scroll: 600,
+    scroll: 1800,
     frame: 120,
     text: `A teszt alapján megmutatjuk, melyik szakterületek megfontolása lehet a leghasznosabb számodra.`,
   },
   {
-    scroll: 1000,
+    scroll: 2900,
     frame: 165,
     text: `Célunk, hogy végül rátalálj arra a szakterületre, ahol a leginkább ki tudsz teljesedni orvosként.`,
   },
@@ -40,6 +41,9 @@ export default function AnimationSection({}) {
   const [currentState, setCurrentState] = useState(0)
   const [motionHelper, setMotionHelper] = useState(1)
   const [lottieInstance, setLottieInstance] = useState()
+  const [isFullscreen] = useMediaQuery(
+    "(min-height: 500px) and (max-height: 1100px)"
+  )
 
   useEffect(() => {
     const instance = lottie.loadAnimation({
@@ -49,7 +53,6 @@ export default function AnimationSection({}) {
       initialSegment: [0, animationStates[0].frame],
     })
     instance.setSpeed(1.5)
-    instance.addEventListener("segmentStart", (e) => console.log(e))
     setLottieInstance(instance)
 
     return () => {
@@ -63,19 +66,11 @@ export default function AnimationSection({}) {
     setMotionHelper(step)
     const from = animationStates[currentState].frame + 1
     const to = animationStates[currentState + step].frame
-    console.log(from, to)
     lottieInstance?.playSegments([from, to], true)
     setCurrentState(currentState + step)
   }
   const handlePrev = () => transitionTo("prev")
   const handleNext = () => transitionTo("next")
-
-  useEffect(() => {
-    document.addEventListener("scroll", handleScroll)
-    return () => {
-      document.removeEventListener("scroll", handleScroll)
-    }
-  }, [currentState, lottieInstance])
 
   const handleScroll = (e) => {
     const pos = scrollElement.current.offsetTop
@@ -83,11 +78,18 @@ export default function AnimationSection({}) {
     if (pos < animationStates[currentState]?.scroll) handlePrev()
   }
 
+  useEffect(() => {
+    if (isFullscreen) document.addEventListener("scroll", handleScroll)
+    return () => {
+      document.removeEventListener("scroll", handleScroll)
+    }
+  }, [currentState, lottieInstance, isFullscreen])
+
   return (
     <Box
       sx={{
         "@media screen and (min-height: 500px) and (max-height: 1100px)": {
-          height: "2200px",
+          height: "4500px",
         },
       }}
       pos="relative"
@@ -160,7 +162,7 @@ export default function AnimationSection({}) {
             _before={{
               content: '""',
               position: "absolute",
-              top: "calc(80%)",
+              top: { base: "calc(60%)", lg: "calc(65%)" },
               left: "50%",
               width: "100vw",
               height: "100%",
@@ -168,6 +170,7 @@ export default function AnimationSection({}) {
               transform: "translateX(-50%)",
               zIndex: "-1",
             }}
+            pb="6"
             className={`state${currentState}`}
           >
             <ReactSVG src="doctors.svg" />

@@ -78,7 +78,7 @@ export default function Home() {
               position: "absolute",
               top: 0,
               left: 0,
-              right: { base: "-60px", md: "-80px" /* , lg: "0" */ },
+              right: { base: "-60px", md: "-80px", lg: "-40px" },
               bottom: { base: "-50px", md: "-100px" },
               backgroundImage: "url(star.svg)",
               backgroundRepeat: "no-repeat",
@@ -109,7 +109,7 @@ export default function Home() {
               A szakterületed kiválasztása életed egyik legmeghatározóbb
               döntése.
               <br />
-              Ebben szeretnénk neked segíteni
+              Ebben szeretnénk neked segíteni.
             </Heading>
             <Button
               colorScheme="primary"
@@ -127,8 +127,7 @@ export default function Home() {
           <Container
             maxWidth="6xl"
             px={{ base: 4, md: 10 }}
-            pb={{ sm: 4, md: 14, "2xl": 16 }}
-            pt={{ lg: 10 }}
+            pb={{ base: 20, md: 24, lg: 28, "2xl": 32 }}
           >
             <Grid
               templateColumns={{ md: "4fr 3fr" }}
@@ -144,11 +143,12 @@ export default function Home() {
                 alignItems="flex-start"
               >
                 <Heading size="lg" fontWeight="extrabold">
-                  Készen állsz? Csak 15 perc
+                  Készen állsz?
                 </Heading>
                 <Text pb="4">
                   Ne bízz a szerencsére egy életre szóló döntést, bízz inkább
-                  bennünk, mi segítünk jól választani.
+                  bennünk, mi segítünk jól választani. Csak 15 percet vesz
+                  igénybe.
                 </Text>
                 <Button
                   flexShrink="0"
@@ -192,31 +192,33 @@ export default function Home() {
           </Container>
         </Box>
       </Box>
-      <Box as="footer" role="contentinfo" py="8" pt="16">
-        <Divider mb="8" display={{ md: "none" }} />
-        <Container maxWidth="6xl" px={{ base: 6, md: 10 }}>
+      <Box as="footer" role="contentinfo" bg="gray.100" color="gray.600">
+        <Container maxWidth="6xl" px={{ base: 6, md: 10 }} py="16">
           <Stack
-            direction="row"
-            spacing="4"
-            align="center"
+            direction={{ base: "column", md: "row" }}
+            spacing="8"
             justify="space-between"
           >
-            <Stack direction="row" spacing="8" align="center">
+            <Stack spacing={{ base: "2", lg: "4" }}>
               <Image src="logo.svg" alt="MESSA logo" w="20" />
-              <Text fontSize="sm" display={{ base: "none", sm: "block" }}>
-                &copy; {new Date().getFullYear()} Minden jog fenntartva
-              </Text>
+              <Text>Medical Specialization via Self Assessment</Text>
             </Stack>
-            <Link href="mailto:messahungary@gmail.com">Kapcsolat</Link>
+            <Stack spacing={{ base: "2", lg: "4" }}>
+              <Text
+                fontWeight="semibold"
+                color="gray.500"
+                textTransform="uppercase"
+                fontSize="sm"
+              >
+                Kapcsolat
+              </Text>
+              <Link href="mailto:messahungary@gmail.com">
+                messahungary@gmail.com
+              </Link>
+            </Stack>
           </Stack>
-          <Text
-            fontSize="sm"
-            pt="6"
-            textAlign="center"
-            display={{ base: "block", sm: "none" }}
-          >
-            &copy; {new Date().getFullYear()} MESSA minden jog fenntartva
-          </Text>
+          <Divider my="8" />
+          <Text>&copy; {new Date().getFullYear()} Minden jog fenntartva</Text>
         </Container>
       </Box>
       <EmailModal isOpen={isOpen} onClose={onClose} />

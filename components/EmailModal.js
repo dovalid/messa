@@ -72,7 +72,7 @@ export default function EmailModal({ isOpen, onClose }) {
               között szeretnél értesülni, add meg az email címed!
             </Text>
             <Input
-              placeholder="messa@gmail.com"
+              placeholder="valaki@gmail.com"
               size="lg"
               mt="6"
               mb="4"
