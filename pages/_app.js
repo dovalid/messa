@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <link rel="stylesheet" href="doctors.css" />
       </Head>
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />

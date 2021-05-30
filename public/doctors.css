@@ -1,0 +1,28 @@
+#doc1,
+#doc2,
+#doc3,
+#doc4,
+#doc5,
+#doc6,
+#doc7,
+#doc8 {
+  transition: opacity 0.7s ease-in-out;
+  opacity: 1;
+}
+
+.state2 #doc1,
+.state2 #doc2,
+.state2 #doc7,
+.state2 #doc8 {
+  opacity: 0;
+}
+
+.state3 #doc1,
+.state3 #doc2,
+.state3 #doc3,
+.state3 #doc4,
+.state3 #doc6,
+.state3 #doc7,
+.state3 #doc8 {
+  opacity: 0;
+}

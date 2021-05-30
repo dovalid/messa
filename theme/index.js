@@ -35,7 +35,7 @@ const theme = extendTheme({
   components: {
     Button: {
       baseStyle: {
-        /* borderRadius: baseTheme.radii.lg, */
+        borderRadius: baseTheme.radii.lg,
       },
       sizes: {
         xl: {

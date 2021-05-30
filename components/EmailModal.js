@@ -61,10 +61,10 @@ export default function EmailModal({ isOpen, onClose }) {
       preserveScrollBarGap
     >
       <ModalOverlay />
-      <ModalContent mx="4" p="3">
+      <ModalContent mx="4" py="4" px={{ base: "2", md: "3" }} borderRadius="lg">
         <form onSubmit={handleSubmit}>
-          <ModalHeader>Hamarosan</ModalHeader>
-          <ModalCloseButton borderRadius="full" top="5" right="6" />
+          <ModalHeader>Hamarosan...</ModalHeader>
+          <ModalCloseButton borderRadius="full" top="6" right="6" />
           <ModalBody>
             <Text>
               Köszönjük, hogy érdeklődsz! Platformunk még fejlesztés alatt áll,
