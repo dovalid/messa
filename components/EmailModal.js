@@ -1,8 +1,9 @@
-import { Button } from "@chakra-ui/button"
 import { CheckIcon, WarningIcon } from "@chakra-ui/icons"
-import { Input } from "@chakra-ui/input"
-import { Stack, Text } from "@chakra-ui/layout"
 import {
+  Stack,
+  Text,
+  Input,
+  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -10,8 +11,8 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "@chakra-ui/modal"
-import { Collapse } from "@chakra-ui/transition"
+  Collapse,
+} from "@chakra-ui/react"
 import { useState } from "react"
 
 export default function EmailModal({ isOpen, onClose }) {

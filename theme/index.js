@@ -28,8 +28,8 @@ const colors = {
 const theme = extendTheme({
   colors,
   fonts: {
-    body: "Inter",
-    heading: "Inter",
+    body: "Inter var, Inter",
+    heading: "Inter var, Inter",
   },
   shadows: {
     outline: "0 0 0 4px rgba(170, 170, 170, 0.6)",

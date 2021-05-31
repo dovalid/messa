@@ -1,12 +1,18 @@
-import { IconButton } from "@chakra-ui/button"
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
-import { Box, Container, Stack, Text } from "@chakra-ui/layout"
 import { useEffect, useRef, useState } from "react"
 import lottie from "lottie-web/build/player/lottie_light"
-import animJson from "../public/animation.json"
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
+import {
+  Box,
+  Container,
+  IconButton,
+  Stack,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react"
 import { ReactSVG } from "react-svg"
 import { AnimatePresence, motion } from "framer-motion"
-import { useMediaQuery } from "@chakra-ui/media-query"
+import animJson from "../public/animation.json"
+import Head from "next/head"
 
 const animationStates = [
   {
@@ -94,6 +100,9 @@ export default function AnimationSection({}) {
       }}
       pos="relative"
     >
+      <Head>
+        <link rel="stylesheet" href="doctors.css" />
+      </Head>
       <Box
         ref={scrollElement}
         pos="sticky"
@@ -163,10 +172,10 @@ export default function AnimationSection({}) {
               content: '""',
               position: "absolute",
               top: { base: "calc(60%)", lg: "calc(65%)" },
-              left: "50%",
               width: "100vw",
-              height: "100%",
+              height: "1000px",
               background: "white",
+              left: "50%",
               transform: "translateX(-50%)",
               zIndex: "-1",
             }}
@@ -176,39 +185,40 @@ export default function AnimationSection({}) {
             <ReactSVG src="doctors.svg" />
           </Box>
         </Container>
-        <IconButton
+        <TransitionButton
           icon={<ChevronLeftIcon />}
-          size="lg"
-          variant="ghost"
-          pos="absolute"
-          left={{ base: 0, lg: "12" }}
-          transform="translateY(-80px)"
-          isRound
           disabled={currentState === 0}
           onClick={handlePrev}
-          sx={{
-            "@media screen and (min-height: 500px) and (max-height: 1100px)": {
-              display: "none",
-            },
-          }}
+          side="left"
         />
-        <IconButton
+        <TransitionButton
           icon={<ChevronRightIcon />}
-          size="lg"
-          variant="ghost"
-          pos="absolute"
-          right={{ base: 0, lg: "12" }}
-          transform="translateY(-80px)"
-          isRound
           disabled={currentState === 3}
           onClick={handleNext}
-          sx={{
-            "@media screen and (min-height: 500px) and (max-height: 1100px)": {
-              display: "none",
-            },
-          }}
+          side="right"
         />
       </Box>
     </Box>
+  )
+}
+
+function TransitionButton({ icon, disabled, onClick, side }) {
+  return (
+    <IconButton
+      icon={icon}
+      size="lg"
+      variant="ghost"
+      pos="absolute"
+      {...{ [side]: { base: 0, lg: "12" } }}
+      transform="translateY(-80px)"
+      isRound
+      disabled={disabled}
+      onClick={onClick}
+      sx={{
+        "@media screen and (min-height: 500px) and (max-height: 1100px)": {
+          display: "none",
+        },
+      }}
+    />
   )
 }
