@@ -18,7 +18,7 @@ export default function Footer() {
           justify="space-between"
         >
           <Stack spacing={{ base: "2", lg: "4" }}>
-            <Image src="logo.svg" alt="MESSA logo" w="20" />
+            <Image src="logo.svg" alt="MESSA logo" w="20" ignoreFallback />
             <Text>Medical Specialization via Self Assessment</Text>
           </Stack>
           <Stack spacing={{ base: "2", lg: "4" }}>

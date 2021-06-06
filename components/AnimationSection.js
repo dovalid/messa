@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { memo, useEffect, useRef, useState } from "react"
 import lottie from "lottie-web/build/player/lottie_light"
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
 import {
@@ -40,6 +40,14 @@ const animationStates = [
 ]
 
 const MotionText = motion(Text)
+//have to use memo so it doesn't rerender on every state change
+const Illustration = memo(() => (
+  <ReactSVG
+    src="doctors.svg"
+    loading={() => <img src="doctors.svg" />}
+    fallback={() => <img src="doctors.svg" />}
+  />
+))
 
 export default function AnimationSection({}) {
   const lottieElement = useRef()
@@ -182,7 +190,7 @@ export default function AnimationSection({}) {
             pb="6"
             className={`state${currentState}`}
           >
-            <ReactSVG src="doctors.svg" />
+            <Illustration />
           </Box>
         </Container>
         <TransitionButton

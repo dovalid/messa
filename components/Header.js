@@ -38,7 +38,7 @@ export default function Header({ onOpen }) {
         py={{ base: 4, lg: 4 }}
       >
         <Stack direction="row" justify="space-between">
-          <Image src="logo.svg" alt="MESSA logo" w="20" />
+          <Image src="logo.svg" alt="MESSA logo" w="20" ignoreFallback />
           <Button
             colorScheme="primary"
             size="md"

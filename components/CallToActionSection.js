@@ -77,6 +77,7 @@ export default function CallToActionSection({ onOpen }) {
               overflow="hidden"
               objectFit="cover"
               objectPosition="0 0"
+              ignoreFallback
             />
           </Box>
         </Grid>
