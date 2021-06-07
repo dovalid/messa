@@ -12,7 +12,12 @@ function MyApp({ Component, pageProps }) {
           name="description"
           content="Preferencia-kérdőív alapú orvosi szakterület-választó platform"
         />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <link
+          rel="preload stylesheet"
+          as="style"
+          href="https://rsms.me/inter/inter.css"
+          crossOrigin="anonymous"
+        />
       </Head>
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
